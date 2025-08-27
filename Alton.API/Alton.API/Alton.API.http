@@ -1,6 +1,7 @@
 @Alton.API_HostAddress = http://localhost:5234
 
-GET {{Alton.API_HostAddress}}/todos/
+GET {{Alton.API_HostAddress}}/
+/
 Accept: application/json
 
 ###

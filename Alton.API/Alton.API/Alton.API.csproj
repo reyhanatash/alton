@@ -35,14 +35,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\DTOs\" />
-    <Folder Include="Application\Services\" />
-    <Folder Include="Core\Interfaces\" />
     <Folder Include="Core\Specifications\" />
     <Folder Include="Infrastructure\Logging\" />
     <Folder Include="Migrations\" />
     <Folder Include="WebApi\Controllers\" />
-    <Folder Include="WebApi\Middleware\" />
   </ItemGroup>
 
 </Project>
