@@ -5,5 +5,6 @@ namespace Alton.API.Core.Interfaces
     public interface IUserService
     {
         Task<LoginResponseDto> LoginAsync(LoginDto model);
+        Task<IEnumerable<UserDto>> GetUsersAsync();
     }
 }

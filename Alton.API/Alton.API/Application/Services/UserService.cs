@@ -58,5 +58,15 @@ namespace Alton.API.Application.Services
             }
         }
 
+        public async Task<IEnumerable<UserDto>> GetUsersAsync() =>
+            (await _context.Users.AsNoTracking().ToListAsync()).Select(u => new UserDto
+            {
+                Id = u.Id,
+                Username = u.Username,
+                Password = u.Password,
+                Role = u.Role,
+                IsActive = u.IsActive
+            });
+
     }
 }

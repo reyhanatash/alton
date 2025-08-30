@@ -1,6 +1,7 @@
 ﻿
 using Alton.API.Application.DTOs.Users;
 using Alton.API.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,11 +22,25 @@ namespace Alton.API.WebApi.Controllers
                 var result = await _user.LoginAsync(model);
                 return result;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
+        }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("getUsers")]
+        public async Task<IEnumerable<UserDto>> GetUsers()
+        {
+            try
+            {
+                var result = await _user.GetUsersAsync();
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
     }
 }
