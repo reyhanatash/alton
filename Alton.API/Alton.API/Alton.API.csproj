@@ -5,8 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <InvariantGlobalization>false</InvariantGlobalization>
-    <PublishAot>true</PublishAot>
+    <PublishAot>false</PublishAot>
     <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+    <PublishTrimmed>false</PublishTrimmed>
+    <IsTrimmable>false</IsTrimmable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,7 +40,6 @@
     <Folder Include="Core\Specifications\" />
     <Folder Include="Infrastructure\Logging\" />
     <Folder Include="Migrations\" />
-    <Folder Include="WebApi\Controllers\" />
   </ItemGroup>
 
 </Project>

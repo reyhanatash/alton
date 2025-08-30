@@ -30,6 +30,12 @@ builder.Services.AddScoped<IPasswordHasher<UserContext>, PasswordHasher<UserCont
 builder.Services.AddScoped<UserMapper, UserMapper>();
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddAuthorization();
+//builder.Services.AddAutoMapper(cfg =>
+//{
+//    cfg.AddProfile<AutoMapperProfile>();
+//});
+
 var jwt = builder.Configuration.GetSection("JwtSettings").Get<JwtSettings>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -47,7 +53,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
     });
 builder.Services.AddAuthorization();
-builder.Services.AddEndpointsApiExplorer();
+//builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", policy =>
@@ -61,6 +67,7 @@ builder.Services.AddCors(options =>
 
 // Swagger
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
     c.AddSecurityDefinition("Bearer", new()
@@ -76,6 +83,8 @@ builder.Services.AddSwaggerGen(c =>
         { new OpenApiSecurityScheme{Reference = new(){Type = ReferenceType.SecurityScheme, Id="Bearer"}}, Array.Empty<string>() }
     });
 });
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
@@ -92,6 +101,7 @@ app.UseAuthentication();
 app.UseAuthorization();
 app.UseSwagger();
 app.UseSwaggerUI();
+app.MapControllers();
 
 app.Run();
 
