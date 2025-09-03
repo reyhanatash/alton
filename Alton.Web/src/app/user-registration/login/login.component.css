@@ -1,0 +1,26 @@
+.card {
+    border-radius: 16px;
+}
+
+.input-group-text {
+    background-color: #e9ecef;
+    border-right: 0;
+}
+
+.form-control {
+    border-left: 0;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #007bff;
+}
+
+button:disabled {
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+
+.text-danger {
+    font-size: 0.85rem;
+}
