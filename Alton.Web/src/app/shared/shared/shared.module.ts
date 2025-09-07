@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { UserService } from '../../services/user.service';
 import { NotifierModule, NotifierOptions } from "angular-notifier";
 import { UtilService } from '../../services/util.service';
+import { TableModule } from 'primeng/table';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -59,12 +60,11 @@ const customNotifierOptions: NotifierOptions = {
     FormsModule,
     HttpClientModule,
     NotifierModule,
+    TableModule
   ],
   providers: [
     UserService,
     UtilService
   ]
-
-
 })
 export class SharedModule { }
