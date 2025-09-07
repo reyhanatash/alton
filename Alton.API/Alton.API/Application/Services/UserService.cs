@@ -40,14 +40,11 @@ namespace Alton.API.Application.Services
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
 
 
-                var hasher = new PasswordHasher<object>();
-                var hashedPassword = hasher.HashPassword(null, model.Password);
-
-                var verification = _passwordHasher.VerifyHashedPassword(user, user.Password, hashedPassword);
+                var verification = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
                 if (user == null ||
                     verification != PasswordVerificationResult.Success)
                     throw new Exception("Invalid username or password.");
-
+                    
                 var roleHandler = UserMapper.MapRole(user.Role.ToString());
                 string secret = roleHandler[1];
                 string role = roleHandler[0];

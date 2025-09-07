@@ -1,10 +1,11 @@
 ﻿using Alton.API.Application.DTOs.Codes;
 using Alton.API.Core.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Alton.API.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/code")]
     [ApiController]
 
 
@@ -14,6 +15,7 @@ namespace Alton.API.WebApi.Controllers
         public CodeController(ICodeService svc) => _code = svc;
 
         [HttpGet("getCodes")]
+        [Authorize]
         public async Task<IEnumerable<CodeDto>> GetCodes()
         {
             try
@@ -29,6 +31,7 @@ namespace Alton.API.WebApi.Controllers
         }
 
         [HttpPost("generateCode")]
+        [Authorize]
         public async Task GenerateCode(CreateCodeDto model)
         {
             try
