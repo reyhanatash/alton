@@ -54,6 +54,7 @@ const customNotifierOptions: NotifierOptions = {
     CommonModule,
     FormsModule,
     NotifierModule.withConfig(customNotifierOptions),
+    TableModule
   ],
   exports: [
     CommonModule,

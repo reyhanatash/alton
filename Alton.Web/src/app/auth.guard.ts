@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, RouterStateSnapshot, ActivatedRouteSnapshot } from '@angular/router';
 import { UtilService } from './services/util.service';
 export function checkRequierd() {
-  let secret = localStorage.getItem('txcd94Hg_doH63');
+  let secret = localStorage.getItem('secret');
   let token = localStorage.getItem('atoken');
   return secret && token
-
 }
 @Injectable({
   providedIn: 'root'

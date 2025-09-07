@@ -19,7 +19,19 @@ export class UserService {
         "Content-Type": "application/json"
       }),
     };
-    return this.http.post(uri, data, httpOptions); 
+    return this.http.post(uri, data, httpOptions);
+  }
+
+  getUsers() {
+    const token: any = localStorage.getItem("atoken");
+    const uri = `${this.url}api/User/getUsers`;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      }),
+    };
+    return this.http.get(uri, httpOptions);
   }
 
 }

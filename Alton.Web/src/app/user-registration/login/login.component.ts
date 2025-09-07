@@ -23,7 +23,6 @@ export class LoginComponent {
     private utilService: UtilService
   ) { }
 
-
   async login(form: NgForm) {
     if (form.invalid) return;
     this.loading = true;
