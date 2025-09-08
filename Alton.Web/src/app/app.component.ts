@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared/shared.module';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NotifierModule } from 'angular-notifier';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, SharedModule, NavbarComponent],
+  imports: [RouterOutlet, SharedModule, NavbarComponent,NotifierModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -21,7 +22,7 @@ export class AppComponent {
     router.events.subscribe((event: Event) => {
       let url = location.pathname.split('?')[0];
       if (event instanceof NavigationEnd) {
-        if ((url.startsWith("/login") || url == "/")) {
+        if (url == "/") {
           this.isLogin = false;
           return;
         }

@@ -13,6 +13,8 @@ import { UtilService } from '../services/util.service';
 export class UsersComponent {
 
   users: any = [];
+  displayChangePasswordModal: boolean = false;
+  selectedUsername: any;
 
   constructor(
     private userService: UserService,
@@ -27,5 +29,23 @@ export class UsersComponent {
     let resposnse = await this.userService.getUsers().toPromise();
     this.users = resposnse;
   }
+
+  selectedUser(user: any, type: number) {
+    switch (type) {
+      case 1:
+        this.displayChangePasswordModal = true;
+        this.selectedUsername = user['username'];
+        break;
+
+      default:
+        break;
+    }
+  }
+
+  updateValue() {
+    this.displayChangePasswordModal = false;
+  }
+
+
 
 }

@@ -1,8 +1,6 @@
 <div class="appContainer">
     <div class="col-12">
-        <p-table #dt styleClass="p-datatable-gridlines" [value]="users" [autoLayout]="true"
-            [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
-            currentPageReportTemplate="نمایش {first} تا {last} " [rowsPerPageOptions]="[10,25,50]">
+        <p-table #dt styleClass="p-datatable-gridlines" [value]="users" [autoLayout]="true" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="username">Username
@@ -19,11 +17,15 @@
                         </div>
                     </td>
                     <td>
-                        <button class="btn btn-outline-info mr-2">Assign</button>
-                        <button class="btn btn-outline-primary">Change Password</button>
+                        <button class="btn btn-outline-info mx-2">Assign</button>
+                        <button (click)="selectedUser(item,1)" class="btn btn-outline-primary">Change Password</button>
                     </td>
                 </tr>
             </ng-template>
         </p-table>
     </div>
 </div>
+
+<p-dialog header="Change Password" [modal]="true" [(visible)]="displayChangePasswordModal" [style]="{ width: '25rem' }">
+    <app-generate-password (closeModal)="updateValue()" [username]="selectedUsername"></app-generate-password>
+</p-dialog>

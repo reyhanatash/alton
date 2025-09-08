@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { UserService } from './../../services/user.service';
@@ -12,7 +12,7 @@ import { UtilService } from '../../services/util.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
   username = '';
   password = '';
@@ -22,6 +22,12 @@ export class LoginComponent {
     private userService: UserService,
     private utilService: UtilService
   ) { }
+
+  ngOnInit(): void {
+    if (this.utilService.checkUserLogin()) {
+      this.utilService.getPath(this.utilService.getUserType());
+    }
+  }
 
   async login(form: NgForm) {
     if (form.invalid) return;

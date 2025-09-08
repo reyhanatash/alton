@@ -34,4 +34,16 @@ export class UserService {
     return this.http.get(uri, httpOptions);
   }
 
+  changePassword(data: any) {
+    const uri = `${this.url}api/user/changePassword`;
+    const token: any = localStorage.getItem("atoken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      }),
+    };
+    return this.http.post(uri, data, httpOptions);
+  }
+
 }
