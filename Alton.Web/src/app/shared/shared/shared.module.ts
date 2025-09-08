@@ -6,6 +6,10 @@ import { UserService } from '../../services/user.service';
 import { NotifierModule, NotifierOptions } from "angular-notifier";
 import { UtilService } from '../../services/util.service';
 import { TableModule } from 'primeng/table';
+import { CodeService } from '../../services/code.service';
+import { GeneratePasswordComponent } from '../../user-registration/generate-password/generate-password.component';
+import { DialogModule } from 'primeng/dialog';
+import { NotifierService } from 'angular-notifier';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -54,18 +58,24 @@ const customNotifierOptions: NotifierOptions = {
     CommonModule,
     FormsModule,
     NotifierModule.withConfig(customNotifierOptions),
-    TableModule
+    TableModule,
+    GeneratePasswordComponent,
+    DialogModule
   ],
   exports: [
     CommonModule,
     FormsModule,
     HttpClientModule,
     NotifierModule,
-    TableModule
+    TableModule,
+    GeneratePasswordComponent,
+    DialogModule,
   ],
   providers: [
     UserService,
-    UtilService
+    UtilService,
+    CodeService,
+    NotifierService
   ]
 })
 export class SharedModule { }
