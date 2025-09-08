@@ -5,7 +5,7 @@ namespace Alton.API.Core.Interfaces
     public interface ICodeService
     {
         Task<IEnumerable<CodeDto>> GetCodesAsync();
-        Task GenerateCodeAsync(CreateCodeDto model);
+        Task<long> GenerateCodeAsync(CreateCodeDto model);
         Task AssignCodeAsync(AssignCodeDto model);
 
     }

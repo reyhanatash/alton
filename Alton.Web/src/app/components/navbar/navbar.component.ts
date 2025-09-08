@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForOf, NgClass } from "@angular/common";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 export interface imenu {
   id: number;
   text: string;
@@ -23,8 +23,14 @@ export class NavbarComponent {
   sidebarMenu: any[] = [];
   selectedSideBarItem: any;
 
+  constructor(private _router: Router) { }
+
   ngOnInit() {
     this.sidebarMenu = Menu;
+  }
 
+  signout() {
+    localStorage.clear();
+    this._router.navigate(['/']);
   }
 }

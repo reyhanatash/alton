@@ -7,7 +7,7 @@ import { NotifierModule, NotifierOptions } from "angular-notifier";
 import { UtilService } from '../../services/util.service';
 import { TableModule } from 'primeng/table';
 import { CodeService } from '../../services/code.service';
-import { GeneratePasswordComponent } from '../../user-registration/generate-password/generate-password.component';
+import { GeneratePasswordComponent } from '../../components/change-password/change-password.component';
 import { DialogModule } from 'primeng/dialog';
 import { NotifierService } from 'angular-notifier';
 

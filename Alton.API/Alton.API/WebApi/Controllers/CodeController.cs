@@ -32,11 +32,12 @@ namespace Alton.API.WebApi.Controllers
 
         [HttpPost("generateCode")]
         [Authorize]
-        public async Task GenerateCode(CreateCodeDto model)
+        public async Task<long> GenerateCode(CreateCodeDto model)
         {
             try
             {
-                await _code.GenerateCodeAsync(model);
+                long code = await _code.GenerateCodeAsync(model);
+                return code;
             }
             catch (Exception ex)
             {

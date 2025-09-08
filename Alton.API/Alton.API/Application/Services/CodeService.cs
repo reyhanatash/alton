@@ -10,10 +10,12 @@ namespace Alton.API.Application.Services
     public class CodeService : ICodeService
     {
         private readonly AppDbContext _context;
+        private readonly IReadTokenClaims _token;
 
-        public CodeService(AppDbContext context)
+        public CodeService(AppDbContext context, IReadTokenClaims token)
         {
             _context = context;
+            _token = token;
         }
         public async Task<IEnumerable<CodeDto>> GetCodesAsync() =>
             (await _context.Codes.AsNoTracking().ToListAsync()).Select(u => new CodeDto
@@ -25,43 +27,46 @@ namespace Alton.API.Application.Services
                 UserId = u.UserId
             });
 
-        public async Task GenerateCodeAsync(CreateCodeDto model)
+        public async Task<long> GenerateCodeAsync(CreateCodeDto model)
         {
             try
             {
+                long generatedCode = 0;
                 switch (model.CodeType)
                 {
                     case 1:
-                        model.IdTemp = ((model.IdTemp + 7777) / 797) - 7777;
+                        generatedCode = ((model.IdTemp + 7777) / 797) - 7777;
                         break;
                     case 2:
-                        model.IdTemp = ((model.IdTemp + 7777) / 780) - 7777;
+                        generatedCode = ((model.IdTemp + 7777) / 780) - 7777;
                         break;
                     case 3:
-                        model.IdTemp = ((model.IdTemp + 7777) / 784) - 7777;
+                        generatedCode = ((model.IdTemp + 7777) / 784) - 7777;
                         break;
                     case 4:
-                        model.IdTemp = ((model.IdTemp + 7777) / 770) - 7777;
+                        generatedCode = ((model.IdTemp + 7777) / 770) - 7777;
                         break;
                     case 5:
-                        model.IdTemp = ((model.IdTemp + 7777) / 877) - 7777;
+                        generatedCode = ((model.IdTemp + 7777) / 877) - 7777;
                         break;
                     case 6:
-                        model.IdTemp = ((model.IdTemp + 7777) / 788) - 7777;
+                        generatedCode = ((model.IdTemp + 7777) / 788) - 7777;
                         break;
                 }
+                int userId = _token.GetUserId();
 
                 var code = new CodeContext
                 {
                     CodeType = model.CodeType,
-                    CreateDate = DateTime.UtcNow,
-                    Id = model.Id,
+                    CreateDate = DateTime.Now,
                     IdTemp = model.IdTemp,
-                    UserId = -1
+                    UserId = userId,
+                    GeneratedCode = generatedCode
                 };
 
                 _context.Codes.Add(code);
                 await _context.SaveChangesAsync();
+                return generatedCode;
             }
             catch (Exception ex)
             {
@@ -76,7 +81,7 @@ namespace Alton.API.Application.Services
                 var assign = new UserAssignmentContext
                 {
                     Id = model.Id,
-                    AssignDate = DateTime.UtcNow,
+                    AssignDate = DateTime.Now,
                     Count = model.Count,
                     UserId = model.UserId
                 };

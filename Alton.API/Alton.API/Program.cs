@@ -5,6 +5,7 @@ using Alton.API.Core.Entities;
 using Alton.API.Core.Interfaces;
 using Alton.API.Infrastructure.Data;
 using Alton.API.Middlwares;
+using Clinic.Api.Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -26,6 +27,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<ICodeService, CodeService>();
+builder.Services.AddScoped<IReadTokenClaims, ReadTokenClaims>();
 builder.Services.AddScoped<IPasswordHasher<UserContext>, PasswordHasher<UserContext>>();
 builder.Services.AddScoped<UserMapper, UserMapper>();
 builder.Services.AddHttpContextAccessor();

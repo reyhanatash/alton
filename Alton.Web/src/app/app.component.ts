@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Event, NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { SharedModule } from './shared/shared/shared.module';
-import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotifierModule } from 'angular-notifier';
 
 @Component({
