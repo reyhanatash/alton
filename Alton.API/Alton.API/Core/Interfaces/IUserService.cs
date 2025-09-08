@@ -6,5 +6,6 @@ namespace Alton.API.Core.Interfaces
     {
         Task<LoginResponseDto> LoginAsync(LoginDto model);
         Task<IEnumerable<UserDto>> GetUsersAsync();
+        Task<string> ChangePassword(ChangePasswordDto model);
     }
 }
