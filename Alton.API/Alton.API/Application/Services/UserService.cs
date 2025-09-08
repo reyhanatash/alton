@@ -72,10 +72,11 @@ namespace Alton.API.Application.Services
                 IsActive = u.IsActive
             });
 
-        public async Task<string> ChangePassword(ChangePasswordDto model)
+        public async Task<ResponseDto> ChangePassword(ChangePasswordDto model)
         {
             try
             {
+                var result = new ResponseDto();
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
                 if (user == null)
                     throw new Exception("User not found");
@@ -88,7 +89,8 @@ namespace Alton.API.Application.Services
                 _context.Users.Update(user);
                 await _context.SaveChangesAsync();
 
-                return "User Password Changed Successfully";
+                result.Data = "User Password Changed Successfully";
+                return result;
             }
             catch (Exception ex)
             {

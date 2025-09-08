@@ -44,12 +44,12 @@ namespace Alton.API.WebApi.Controllers
         }
 
         [HttpPost("changePassword")]
-        public async Task<string> ChangePassword(ChangePasswordDto model)
+        public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
         {
             try
             {
                 var result = await _user.ChangePassword(model);
-                return result;
+                return Ok(result);
             }
             catch (Exception ex)
             {
