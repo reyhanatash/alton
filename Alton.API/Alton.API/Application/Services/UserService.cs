@@ -72,5 +72,28 @@ namespace Alton.API.Application.Services
                 IsActive = u.IsActive
             });
 
+        public async Task<string> ChangePassword(ChangePasswordDto model)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
+                if (user == null)
+                    throw new Exception("User not found");
+
+                var passwordVerification = _passwordHasher.VerifyHashedPassword(user, user.Password, model.OldPassword);
+                if (passwordVerification != PasswordVerificationResult.Success)
+                    throw new Exception("Old password is incorrect");
+
+                user.Password = _passwordHasher.HashPassword(user, model.NewPassword);
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+
+                return "User Password Changed Successfully";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -10,3 +10,20 @@ GET {{Alton.API_HostAddress}}/todos/1
 Accept: application/json
 
 ###
+
+### Change Password
+POST {{Alton.API_HostAddress}}/user/changePassword
+Content-Type: application/json
+{
+  "username": "User",
+  "oldPassword": "1234567",
+  "newPassword": "12345678"
+}
+
+### Login
+POST {{Alton.API_HostAddress}}/api/user/login
+Content-Type: application/json
+{
+  "username": "User",
+  "password": "1234567"
+}

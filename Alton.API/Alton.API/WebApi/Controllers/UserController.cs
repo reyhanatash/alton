@@ -42,5 +42,19 @@ namespace Alton.API.WebApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpPost("changePassword")]
+        public async Task<string> ChangePassword(ChangePasswordDto model)
+        {
+            try
+            {
+                var result = await _user.ChangePassword(model);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
