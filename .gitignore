@@ -10,8 +10,7 @@
 *.userosscache
 *.sln.docstates
 *.env
-/appsettings.Development.json
-appsettings.json
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
@@ -418,3 +417,4 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/Alton.API/Alton.API/appsettings.json

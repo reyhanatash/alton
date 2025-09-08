@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Alton.API.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {

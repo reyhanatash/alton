@@ -6,6 +6,7 @@ using Alton.API.Middlwares;
 using AutoMapper;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Data;
 
 namespace Alton.API.Application.Services
@@ -37,10 +38,13 @@ namespace Alton.API.Application.Services
             try
             {
                 var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
-                if (user == null ||
-                    _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password) != PasswordVerificationResult.Success)
-                    throw new Exception("Invalid username or password.");
 
+
+                var verification = _passwordHasher.VerifyHashedPassword(user, user.Password, model.Password);
+                if (user == null ||
+                    verification != PasswordVerificationResult.Success)
+                    throw new Exception("Invalid username or password.");
+                    
                 var roleHandler = UserMapper.MapRole(user.Role.ToString());
                 string secret = roleHandler[1];
                 string role = roleHandler[0];

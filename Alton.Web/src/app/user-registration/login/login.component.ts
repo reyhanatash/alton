@@ -23,27 +23,25 @@ export class LoginComponent {
     private utilService: UtilService
   ) { }
 
-
-  login(form: NgForm) {
+  async login(form: NgForm) {
     if (form.invalid) return;
     this.loading = true;
-    setTimeout(async () => {
-      let model = {
-        username: this.username,
-        password: this.password
-      }
-      try {
-        let data = await this.userService.login(model).toPromise();
-        console.log(data);
-        this.loading = false;
-      } catch (error) {
-        this.utilService.showNotify("خطا", "error");
-        this.loading = false;
-      }
+    let model = {
+      username: this.username,
+      password: this.password
+    }
+    try {
+      let response: any = await this.userService.login(model).toPromise();
+      this.loading = false;
+      localStorage.setItem("atoken", response.token);
+      localStorage.setItem("secret", response.secretCode);
+      let userType = this.utilService.getUserType();
+      this.utilService.getPath(userType);
 
-    }, 2000);
+    } catch (error) {
+      this.utilService.showNotify("An error has occured", "error");
+      this.loading = false;
+    }
   }
-
-
 
 }
