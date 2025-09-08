@@ -63,11 +63,32 @@ namespace Alton.API.Application.Services
                 _context.Codes.Add(code);
                 await _context.SaveChangesAsync();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                throw new Exception(ex.Message);
             }
-
         }
+
+        public async Task AssignCodeAsync(AssignCodeDto model)
+        {
+            try
+            {
+                var assign = new UserAssignmentContext
+                {
+                    Id = model.Id,
+                    AssignDate = DateTime.UtcNow,
+                    Count = model.Count,
+                    UserId = model.UserId
+                };
+
+                _context.UserAssignments.Add(assign);
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

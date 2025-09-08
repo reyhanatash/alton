@@ -15,8 +15,7 @@ export class AppComponent {
 
   isLogin: boolean = false;
 
-  constructor(
-    private router: Router) {
+  constructor(private router: Router) {
 
     router.events.subscribe((event: Event) => {
       let url = location.pathname.split('?')[0];

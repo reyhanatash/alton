@@ -6,6 +6,7 @@ namespace Alton.API.Core.Interfaces
     {
         Task<IEnumerable<CodeDto>> GetCodesAsync();
         Task GenerateCodeAsync(CreateCodeDto model);
+        Task AssignCodeAsync(AssignCodeDto model);
 
     }
 }

@@ -43,5 +43,19 @@ namespace Alton.API.WebApi.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        [HttpPost("assignCode")]
+        [Authorize]
+        public async Task AssignCode(AssignCodeDto model)
+        {
+            try
+            {
+                await _code.AssignCodeAsync(model);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
