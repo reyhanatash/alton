@@ -77,7 +77,7 @@ namespace Alton.API.Application.Services
             try
             {
                 var result = new ResponseDto();
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == model.Username);
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
                 if (user == null)
                     throw new Exception("User not found");
 

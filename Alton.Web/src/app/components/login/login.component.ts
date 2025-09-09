@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { NgForm } from '@angular/forms';
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user.service';
 import { UtilService } from '../../services/util.service';
 
 @Component({

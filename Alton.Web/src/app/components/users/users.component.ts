@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../shared/shared/shared.module';
-import { UserService } from '../services/user.service';
-import { UtilService } from '../services/util.service';
+import { SharedModule } from '../../shared/shared/shared.module';
+import { UserService } from '../../services/user.service';
+import { UtilService } from '../../services/util.service';
 
 @Component({
   selector: 'app-users',
@@ -14,7 +14,7 @@ export class UsersComponent {
 
   users: any = [];
   displayChangePasswordModal: boolean = false;
-  selectedUsername: any;
+  selectedUserId: any;
 
   constructor(
     private userService: UserService,
@@ -34,10 +34,7 @@ export class UsersComponent {
     switch (type) {
       case 1:
         this.displayChangePasswordModal = true;
-        this.selectedUsername = user['username'];
-        break;
-
-      default:
+        this.selectedUserId = user['id'];
         break;
     }
   }
@@ -45,7 +42,4 @@ export class UsersComponent {
   updateValue() {
     this.displayChangePasswordModal = false;
   }
-
-
-
 }

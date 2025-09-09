@@ -2,14 +2,14 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SharedModule } from '../../shared/shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { UtilService } from '../../services/util.service';
-import { UserService } from './../../services/user.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
-  selector: 'app-generate-password',
+  selector: 'app-change-password',
   standalone: true,
   imports: [SharedModule],
-  templateUrl: './generate-password.component.html',
-  styleUrl: './generate-password.component.css'
+  templateUrl: './change-password.component.html',
+  styleUrl: './change-password.component.css'
 })
 export class GeneratePasswordComponent {
 
@@ -22,7 +22,7 @@ export class GeneratePasswordComponent {
   newPassword: any;
   confirmPassword: any;
   loading = false;
-  @Input() username: string = '';
+  @Input() userId: string = '';
 
   @Output() closeModal = new EventEmitter<string>();
 
@@ -41,7 +41,7 @@ export class GeneratePasswordComponent {
     }
     this.loading = true;
     let model = {
-      username: this.username,
+      userId: this.userId,
       newPassword: this.newPassword,
       oldPassword: this.oldPassword
     }
@@ -58,5 +58,4 @@ export class GeneratePasswordComponent {
       this.loading = false;
     }
   }
-
 }

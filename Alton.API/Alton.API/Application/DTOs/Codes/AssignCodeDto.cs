@@ -1,6 +1,6 @@
-﻿namespace Alton.API.Core.Entities
+﻿namespace Alton.API.Application.DTOs.Codes
 {
-    public class UserAssignmentContext
+    public class AssignCodeDto
     {
         public int Id { get; set; }
         public int Count { get; set; }
