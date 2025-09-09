@@ -4,7 +4,6 @@
 
 .sidebar-items {
     overflow-y: auto;
-
 }
 
 .sidebar-items {
@@ -35,12 +34,10 @@
     border: 1px solid #a3a3a3;
     color: #a3a3a3;
     width: fit-content;
-
     input {
         border: none;
         outline: none;
     }
-
 }
 
 .search-container input::placeholder {
@@ -52,6 +49,7 @@
     height: 50px;
     background-color: #a3a3a3;
     border-radius: 100%;
+    text-align: center;
 }
 
 .navbar-item {
