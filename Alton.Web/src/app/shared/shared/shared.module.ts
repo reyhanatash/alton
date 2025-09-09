@@ -10,6 +10,7 @@ import { CodeService } from '../../services/code.service';
 import { GeneratePasswordComponent } from '../../components/change-password/change-password.component';
 import { DialogModule } from 'primeng/dialog';
 import { NotifierService } from 'angular-notifier';
+import { OnlyNumber } from '../custom.directive';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -60,7 +61,8 @@ const customNotifierOptions: NotifierOptions = {
     NotifierModule.withConfig(customNotifierOptions),
     TableModule,
     GeneratePasswordComponent,
-    DialogModule
+    DialogModule,
+    OnlyNumber
   ],
   exports: [
     CommonModule,
@@ -70,6 +72,7 @@ const customNotifierOptions: NotifierOptions = {
     TableModule,
     GeneratePasswordComponent,
     DialogModule,
+    OnlyNumber
   ],
   providers: [
     UserService,
