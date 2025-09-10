@@ -78,9 +78,10 @@ namespace Alton.API.Application.Services
         {
             try
             {
+                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
+
                 var assign = new UserAssignmentContext
                 {
-                    Id = model.Id,
                     AssignDate = DateTime.Now,
                     Count = model.Count,
                     UserId = model.UserId

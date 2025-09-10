@@ -2,15 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { UserService } from '../../services/user.service';
+import { UserService } from '../services/user.service';
 import { NotifierModule, NotifierOptions } from "angular-notifier";
-import { UtilService } from '../../services/util.service';
+import { UtilService } from '../services/util.service';
 import { TableModule } from 'primeng/table';
-import { CodeService } from '../../services/code.service';
-import { GeneratePasswordComponent } from '../../components/change-password/change-password.component';
+import { CodeService } from '../services/code.service';
+import { GeneratePasswordComponent } from '../components/change-password/change-password.component';
 import { DialogModule } from 'primeng/dialog';
 import { NotifierService } from 'angular-notifier';
-import { OnlyNumber } from '../custom.directive';
+import { OnlyNumber } from './custom.directive';
 
 const customNotifierOptions: NotifierOptions = {
   position: {
@@ -72,7 +72,7 @@ const customNotifierOptions: NotifierOptions = {
     TableModule,
     GeneratePasswordComponent,
     DialogModule,
-    OnlyNumber
+    OnlyNumber,
   ],
   providers: [
     UserService,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../shared/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { NgForm } from '@angular/forms';
 import { CodeService } from '../../services/code.service';
 import { UtilService } from '../../services/util.service';
@@ -42,7 +42,7 @@ export class GenerateCodeComponent {
       let response: any = await this.codeService.generateCode(model).toPromise();
       this.loading = false;
       this.code = response;
-      this.utilService.showNotify("success", "success");
+      // this.utilService.showNotify("success", "success");
     } catch (error) {
       this.utilService.showNotify("An error has occured", "error");
       this.loading = false;

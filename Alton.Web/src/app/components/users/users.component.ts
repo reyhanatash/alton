@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../shared/shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { UserService } from '../../services/user.service';
 import { UtilService } from '../../services/util.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users',
@@ -13,12 +14,14 @@ import { UtilService } from '../../services/util.service';
 export class UsersComponent {
 
   users: any = [];
-  displayChangePasswordModal: boolean = false;
+  showChangePasswordModal: boolean = false;
+  showAssignCodeModal: boolean = false;
   selectedUserId: any;
 
   constructor(
     private userService: UserService,
-    private utilService: UtilService
+    private utilService: UtilService,
+    private router: Router
   ) { }
 
   async ngOnInit() {
@@ -33,13 +36,28 @@ export class UsersComponent {
   selectedUser(user: any, type: number) {
     switch (type) {
       case 1:
-        this.displayChangePasswordModal = true;
+        this.showChangePasswordModal = true;
+        this.selectedUserId = user['id'];
+        break;
+      case 2:
+        this.showAssignCodeModal = true;
         this.selectedUserId = user['id'];
         break;
     }
   }
 
-  updateValue() {
-    this.displayChangePasswordModal = false;
+  gotoAssign(id: number) {
+    this.router.navigate(['/assign-code/' + id]);
+  }
+
+  closeModal(type: number) {
+    switch (type) {
+      case 1:
+        this.showChangePasswordModal = false;
+        break;
+      case 2:
+        this.showAssignCodeModal = false;
+        break;
+    }
   }
 }

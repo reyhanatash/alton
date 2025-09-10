@@ -3,7 +3,6 @@ import { LoginComponent } from './components/login/login.component';
 import { AdminAuthGuard } from './auth.guard';
 
 export const routes: Routes = [
-    // { path: '', component: LoginComponent },
     { path: '', component: LoginComponent },
     {
         path: 'users',
@@ -14,7 +13,11 @@ export const routes: Routes = [
     {
         path: 'generate-code',
         loadComponent: () => import('./components/generate-code/generate-code.component').then(m => m.GenerateCodeComponent),
-        // canActivate: [AdminAuthGuard],
-        // data: { roles: [2] }
+    },
+    {
+        path: 'assign-code/:id',
+        loadComponent: () => import('./components/assign-code/assign-code.component').then(m => m.AssignCodeComponent),
+        canActivate: [AdminAuthGuard],
+        data: { roles: [1] }
     },
 ];

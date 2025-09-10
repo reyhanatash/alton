@@ -12,7 +12,7 @@ export class CodeService {
   ) { }
   url = environment.url;
 
-  generateCode(data: any) {
+  generateCode(model: any) {
     const uri = `${this.url}api/code/generateCode`;
     const token: any = localStorage.getItem("atoken");
     const httpOptions = {
@@ -21,7 +21,18 @@ export class CodeService {
         Authorization: "Bearer " + token
       }),
     };
-    return this.http.post(uri, data, httpOptions);
+    return this.http.post(uri, model, httpOptions);
   }
 
+  assignCode(model: any) {
+    const uri = `${this.url}api/code/assignCode`;
+    const token: any = localStorage.getItem("atoken");
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token
+      }),
+    };
+    return this.http.post(uri, model, httpOptions);
+  }
 }

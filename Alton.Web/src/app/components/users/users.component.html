@@ -18,8 +18,8 @@
                         </div>
                     </td>
                     <td>
-                        <button class="btn btn-outline-info mx-2">Assign</button>
                         <button (click)="selectedUser(item,1)" class="btn btn-outline-primary">Change Password</button>
+                        <button (click)="gotoAssign(item.id)" class="btn btn-outline-info mx-2">Assign</button>
                     </td>
                 </tr>
             </ng-template>
@@ -27,6 +27,6 @@
     </div>
 </div>
 
-<p-dialog header="Change Password" [modal]="true" [(visible)]="displayChangePasswordModal" [style]="{ width: '25rem' }">
-    <app-change-password (closeModal)="updateValue()" [userId]="selectedUserId"></app-change-password>
+<p-dialog header="Change Password" [modal]="true" [(visible)]="showChangePasswordModal" [style]="{ width: '25rem' }">
+    <app-change-password (closeModal)="closeModal(1)" [userId]="selectedUserId"></app-change-password>
 </p-dialog>

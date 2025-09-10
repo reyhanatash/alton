@@ -4,9 +4,11 @@
             <div class="mb-3">
                 <label for="codeType" class="form-label">Code Type</label>
                 <div class="input-group">
-                    <input type="text" [(ngModel)]="codeType" name="codeType" id="codeType" class="form-control" placeholder="Enter Code Type" OnlyNumber required>
+                    <input type="text" [(ngModel)]="codeType" name="codeType" id="codeType" class="form-control"
+                        placeholder="Enter Code Type" OnlyNumber required>
                 </div>
-                <div *ngIf="loginForm.submitted && loginForm.controls['codeType']?.invalid" class="text-danger small mt-1">
+                <div *ngIf="loginForm.submitted && loginForm.controls['codeType']?.invalid"
+                    class="text-danger small mt-1">
                     Please enter CodeType.
                 </div>
             </div>
@@ -14,20 +16,24 @@
             <div class="mb-3">
                 <label for="idTemp" class="form-label">IdTemp</label>
                 <div class="input-group">
-                    <input type="text" [(ngModel)]="idTemp" name="idTemp" id="idTemp" class="form-control" placeholder="Enter IdTemp" OnlyNumber required>
+                    <input type="text" [(ngModel)]="idTemp" name="idTemp" id="idTemp" class="form-control"
+                        placeholder="Enter IdTemp" OnlyNumber required>
                 </div>
-                <div *ngIf="loginForm.submitted && loginForm.controls['idTemp']?.invalid" class="text-danger small mt-1">
+                <div *ngIf="loginForm.submitted && loginForm.controls['idTemp']?.invalid"
+                    class="text-danger small mt-1">
                     Please enter IdTemp.
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center mt-4" [disabled]="loading">
-        <span *ngIf="!loading">Generate</span>
-        <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
-        <span *ngIf="loading">Generating...</span>
-      </button>
-            <span *ngIf="code" class="mt-3">
-        Generated Code: {{code}}
-      </span>
+            <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center mt-4"
+                [disabled]="loading">
+                <span *ngIf="!loading">Generate</span>
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+                <span *ngIf="loading">Generating...</span>
+            </button>
+            <div *ngIf="code" class="mt-3 fw-bold">
+                Generated Code: {{code}}
+            </div>
         </form>
     </div>
 </div>

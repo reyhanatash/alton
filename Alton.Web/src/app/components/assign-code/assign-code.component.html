@@ -1,0 +1,26 @@
+<div class="container d-flex justify-content-center align-items-center mt-5 bg-light">
+    <div class="card shadow-lg p-4 border-0" style="max-width: 400px; width: 100%; border-radius: 16px;">
+        <form #assignform="ngForm" (ngSubmit)="assignCode(assignform)">
+            <div class="mb-3">
+                <label for="count" class="form-label">Code Assignment Count</label>
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="count" name="count" id="count" class="form-control"
+                        placeholder="Enter assignment count" OnlyNumber required>
+                </div>
+                <div *ngIf="assignform.submitted && assignform.controls['count']?.invalid"
+                    class="text-danger small mt-1">
+                    Please enter assignment count.
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 d-flex justify-content-center align-items-center mt-4"
+                [disabled]="loading">
+                <span *ngIf="!loading">Assign</span>
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2" role="status"
+                    aria-hidden="true"></span>
+            </button>
+        </form>
+    </div>
+</div>
+
+<notifier-container></notifier-container>

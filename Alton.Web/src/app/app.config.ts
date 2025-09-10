@@ -53,6 +53,5 @@ export const appConfig: ApplicationConfig = {
     NotifierService,
     importProvidersFrom(NotifierModule.withConfig(customNotifierOptions)),
     UtilService
-
   ]
 };

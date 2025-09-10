@@ -22,7 +22,7 @@ export class GeneratePasswordComponent {
   newPassword: any;
   confirmPassword: any;
   loading = false;
-  @Input() userId: string = '';
+  @Input() username: string = '';
 
   @Output() closeModal = new EventEmitter<string>();
 
@@ -41,14 +41,14 @@ export class GeneratePasswordComponent {
     }
     this.loading = true;
     let model = {
-      userId: this.userId,
+      username: this.username,
       newPassword: this.newPassword,
       oldPassword: this.oldPassword
     }
     try {
       await this.userService.changePassword(model).toPromise();
       this.closeModal.emit("1");
-      this.utilService.showNotify("Successfully changed", "success");
+      this.utilService.showNotify("success", "success");
       this.oldPassword = null;
       this.newPassword = null;
       this.confirmPassword = null;
@@ -58,4 +58,5 @@ export class GeneratePasswordComponent {
       this.loading = false;
     }
   }
+
 }
