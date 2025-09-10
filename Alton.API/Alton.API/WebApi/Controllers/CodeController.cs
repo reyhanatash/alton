@@ -31,7 +31,7 @@ namespace Alton.API.WebApi.Controllers
         }
 
         [HttpPost("generateCode")]
-        [Authorize(Roles ="Admin")]
+        [Authorize]
         public async Task<long> GenerateCode(CreateCodeDto model)
         {
             try

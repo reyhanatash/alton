@@ -28,8 +28,8 @@ namespace Alton.API.WebApi.Controllers
             }
         }
 
-        [Authorize(Roles = "Admin")]
         [HttpGet("getUsers")]
+        [Authorize(Roles = "Admin")]
         public async Task<IEnumerable<UserDto>> GetUsers()
         {
             try
@@ -44,6 +44,7 @@ namespace Alton.API.WebApi.Controllers
         }
 
         [HttpPost("changePassword")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> ChangePassword(ChangePasswordDto model)
         {
             try
