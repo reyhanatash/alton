@@ -9,6 +9,7 @@ namespace Alton.API.Infrastructure.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
         public DbSet<UserContext> Users { get; set; }
         public DbSet<CodeContext> Codes { get; set; }
+        public DbSet<CodeHistoryContext> CodeHistories { get; set; }
         public DbSet<UserAssignmentContext> UserAssignments { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

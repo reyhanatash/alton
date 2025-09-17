@@ -50,6 +50,34 @@ namespace Alton.API.Migrations
                     b.ToTable("Codes");
                 });
 
+            modelBuilder.Entity("Alton.API.Core.Entities.CodeHistoryContext", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CodeType")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("GeneratedCode")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("IdTemp")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CodeHistories");
+                });
+
             modelBuilder.Entity("Alton.API.Core.Entities.UserAssignmentContext", b =>
                 {
                     b.Property<int>("Id")

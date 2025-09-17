@@ -31,6 +31,21 @@ namespace Alton.API.Application.Services
         {
             try
             {
+                int userId = _token.GetUserId();
+
+                var items = await _context.Codes.AsNoTracking()
+                .Where(c => userId == c.UserId)
+                .ToListAsync();
+
+                var userAssign = await _context.UserAssignments.FirstOrDefaultAsync(user => user.UserId == userId);
+
+                if (userAssign != null)
+                {
+                    if (userAssign.Count < items.ToList().Count)
+                    {
+                        throw new Exception("Your limit is reached!");
+                    }
+                }
                 long generatedCode = 0;
                 switch (model.CodeType)
                 {
@@ -53,7 +68,6 @@ namespace Alton.API.Application.Services
                         generatedCode = ((model.IdTemp + 7777) / 788) - 7777;
                         break;
                 }
-                int userId = _token.GetUserId();
 
                 var code = new CodeContext
                 {
@@ -65,6 +79,18 @@ namespace Alton.API.Application.Services
                 };
 
                 _context.Codes.Add(code);
+                await _context.SaveChangesAsync();
+
+
+                var codeHistory = new CodeHistoryContext
+                {
+                    CodeType = model.CodeType,
+                    CreateDate = DateTime.Now,
+                    IdTemp = model.IdTemp,
+                    UserId = userId,
+                    GeneratedCode = generatedCode
+                };
+                _context.CodeHistories.Add(codeHistory);
                 await _context.SaveChangesAsync();
                 return generatedCode;
             }
@@ -78,16 +104,35 @@ namespace Alton.API.Application.Services
         {
             try
             {
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == model.UserId);
+                var user = await _context.UserAssignments.FirstOrDefaultAsync(u => u.UserId == model.UserId);
 
-                var assign = new UserAssignmentContext
+                if (user != null)
                 {
-                    AssignDate = DateTime.Now,
-                    Count = model.Count,
-                    UserId = model.UserId
-                };
+                    // log assignhaye ghabli bayad bemoone ya update beshe per user?
+                    user.AssignDate = DateTime.Now;
+                    user.Count = model.Count;
+                    user.UserId = user.UserId;
+                    _context.UserAssignments.Update(user);
+                }
+                else
+                {
+                    var assign = new UserAssignmentContext
+                    {
+                        AssignDate = DateTime.Now,
+                        Count = model.Count,
+                        UserId = model.UserId
+                    };
 
-                _context.UserAssignments.Add(assign);
+                    _context.UserAssignments.Add(assign);
+                }
+                await _context.SaveChangesAsync();
+
+
+                var items = await _context.Codes.AsNoTracking()
+                    .Where(c => model.UserId == c.UserId)
+                    .ToListAsync();
+
+                _context.Codes.RemoveRange(items);
                 await _context.SaveChangesAsync();
             }
             catch (Exception ex)
